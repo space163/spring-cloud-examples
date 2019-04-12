@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: spring-cloud-zuul-002
+server:
+  port: 8005
+zuul:
+  routes:
+    api-a:
+      path: /client2/**
+      serviceId: spring-cloud-registerApp
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

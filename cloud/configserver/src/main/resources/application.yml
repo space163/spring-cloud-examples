@@ -1,0 +1,26 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/space163/spring-cloud-examples
+          search-paths: config
+#  rabbitmq:
+#    host:
+#    port:
+#    username:
+#    password:
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/

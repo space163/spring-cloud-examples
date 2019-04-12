@@ -1,0 +1,31 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: registerApp
+        uri: lb://spring-cloud-registerApp
+        filters:
+        - Token=true
+        - StripPrefix=1
+        predicates:
+          - Path=/registerApp/**
+      - id: client
+        uri: lb://spring-cloud-client
+        predicates:
+          - Path=/client/**
+        filters:
+        - StripPrefix=1
+  application:
+    name: spring-cloud-gateway
+server:
+  port: 8004
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8000/eureka/
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
